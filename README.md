@@ -1,6 +1,6 @@
 # ʕ •́؈•̀) `workers-typescript-template`
 
-A batteries included template for kick starting a TypeScript Cloudflare worker project.
+A batteries included template for kick starting a TypeScript Cloudflare worker project to power multiple apps with a single script since Workers is limited to 30 scripts.
 
 ## 🔋 Getting Started
 
@@ -9,12 +9,23 @@ This template is meant to be used with [Wrangler](https://github.com/cloudflare/
 To generate using Wrangler, run this command:
 
 ```bash
-wrangler generate my-ts-project https://github.com/EverlastingBugstopper/worker-typescript-template
+wrangler generate my-ts-multiapp-project https://github.com/jahands/worker-typescript-template-multiapp
 ```
 
 ### 👩 💻 Developing
 
-[`src/index.js`](./src/index.ts) calls the request handler in [`src/handler.ts`](./src/handler.ts), and will return the [request method](https://developer.mozilla.org/en-US/docs/Web/API/Request/method) for the given request.
+[`src/index.js`](./src/index.ts) calls the request handler in [`src/apps/example/example.ts`](./src/handler.ts), and will return the [request method](https://developer.mozilla.org/en-US/docs/Web/API/Request/method) for the given request.
+
+To add your app to the project, simple create a new file for your app and import it:
+```typescript
+import { handleMyApp } from './apps/myapp/myapp'
+const handlers = {
+  'myapp.com': handleMyApp
+}
+```
+Any number of apps can be run from the same script on any domain/subdomain, as long as the built project is no more than 1MB.
+
+For maximum versitility, each handler is given the event instead of a request, in case you want to use event.waitUntil() etc in an app.
 
 ### 🧪 Testing
 
@@ -30,7 +41,7 @@ For information on how to preview and publish your worker, please see the [Wrang
 
 ## 🤢 Issues
 
-If you run into issues with this specific project, please feel free to file an issue [here](https://github.com/cloudflare/workers-typescript-template/issues). If the problem is with Wrangler, please file an issue [here](https://github.com/cloudflare/wrangler/issues).
+If you run into issues with this specific project, please feel free to file an issue [here](https://github.com/jahands/worker-typescript-template-multiapp/issues). If the problem is with Wrangler, please file an issue [here](https://github.com/cloudflare/wrangler/issues).
 
 ## ⚠️ Caveats
 
