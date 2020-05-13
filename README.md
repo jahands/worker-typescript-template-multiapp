@@ -1,4 +1,4 @@
-# ʕ •́؈•̀) `workers-typescript-template`
+# ʕ •́؈•̀) `workers-typescript-template-multiapp`
 
 A batteries included template for kick starting a TypeScript Cloudflare worker project to power multiple apps with a single script since Workers is limited to 30 scripts.
 
