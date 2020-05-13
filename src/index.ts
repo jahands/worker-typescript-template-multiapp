@@ -1,7 +1,7 @@
 // Import a handler for each app
 import { handleExample } from './apps/example/example'
 const handlers = {
-  'example.com': handleExample
+  'example.com': handleExample,
   // 'my-cool-app.com': handleMyCoolApp
 }
 addEventListener('fetch', event => {

@@ -17,12 +17,14 @@ wrangler generate my-ts-multiapp-project https://github.com/jahands/worker-types
 [`src/index.js`](./src/index.ts) calls the request handler in [`src/apps/example/example.ts`](./src/handler.ts), and will return the [request method](https://developer.mozilla.org/en-US/docs/Web/API/Request/method) for the given request.
 
 To add your app to the project, simple create a new file for your app and import it:
+
 ```typescript
 import { handleMyApp } from './apps/myapp/myapp'
 const handlers = {
-  'myapp.com': handleMyApp
+  'myapp.com': handleMyApp,
 }
 ```
+
 Any number of apps can be run from the same script on any domain/subdomain, as long as the built project is no more than 1MB.
 
 For maximum versitility, each handler is given the event instead of a request, in case you want to use event.waitUntil() etc in an app.
