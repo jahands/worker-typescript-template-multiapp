@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { handleRequest } from '../src/handler'
+import { handleExample } from '../src/apps/example/example'
 
 describe('handler returns response with request method', () => {
   const methods = [
@@ -15,7 +15,8 @@ describe('handler returns response with request method', () => {
   ]
   methods.forEach(method => {
     it(method, async () => {
-      const result = await handleRequest(new Request('/', { method }))
+      let event = new FetchEvent('fetch', { request: (new Request('/', { method })) })
+      const result = await handleExample(event)
       const text = await result.text()
       expect(text).to.include(method)
     })
